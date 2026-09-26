@@ -236,7 +236,7 @@ function RecorderModal({ onClose }: { onClose: () => void }) {
       chunksRef.current = []
       mr.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data) }
       mr.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' })
+        const blob = new Blob(chunksRef.current, { type: mr.mimeType || 'audio/mp4' })
         const url = URL.createObjectURL(blob)
         setRecordings(prev => [
           ...prev,
